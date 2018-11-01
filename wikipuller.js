@@ -3,19 +3,23 @@ var baseURL = "https://dragalialost.gamepedia.com/api.php?action=cargoquery&form
 
 // adventurers table properties
 var adventurerTable = "Adventurers";
-var adventurerFields = ["Id=BaseId", "Name", "NameJP", "Title", "WeaponType", "Rarity", "ElementalType", "CharaType", "VariationId", "MinHp3", "MinHp4", "MinHp5", "MaxHp", "PlusHp0", "PlusHp1", "PlusHp2", "PlusHp3", "PlusHp4", "McFullBonusHp5", "MinAtk3", "MinAtk4", "MinAtk5", "MaxAtk", "PlusAtk0", "PlusAtk1", "PlusAtk2", "PlusAtk3", "PlusAtk4", "McFullBonusAtk5", "MinDef", "DefCoef", "Skill1Name", "Skill2Name", "Abilities11", "Abilities12", "Abilities13", "Abilities14", "Abilities21", "Abilities22", "Abilities23", "Abilities24", "Abilities31", "Abilities32", "Abilities33", "Abilities34", "ExAbilityData1", "ExAbilityData2", "ExAbilityData3", "ExAbilityData4", "ExAbilityData5", "ManaCircleName", "JapaneseCV", "EnglishCV", "Description", "IsPlayable", "MaxFriendshipPoint", "Obtain", "ReleaseDate"];
+var adventurerFields = ["Id", "Name", "NameJP", "Title", "WeaponType", "Rarity", "ElementalType", "CharaType", "VariationId", "MinHp3", "MinHp4", "MinHp5", "MaxHp", "PlusHp0", "PlusHp1", "PlusHp2", "PlusHp3", "PlusHp4", "McFullBonusHp5", "MinAtk3", "MinAtk4", "MinAtk5", "MaxAtk", "PlusAtk0", "PlusAtk1", "PlusAtk2", "PlusAtk3", "PlusAtk4", "McFullBonusAtk5", "MinDef", "DefCoef", "Skill1Name", "Skill2Name", "Abilities11", "Abilities12", "Abilities13", "Abilities14", "Abilities21", "Abilities22", "Abilities23", "Abilities24", "Abilities31", "Abilities32", "Abilities33", "Abilities34", "ExAbilityData1", "ExAbilityData2", "ExAbilityData3", "ExAbilityData4", "ExAbilityData5", "ManaCircleName", "JapaneseCV", "EnglishCV", "Description", "IsPlayable", "MaxFriendshipPoint", "Obtain", "ReleaseDate"];
+var adventurerGrouping = ["Id", "VariationId"];
 
 // weapons table properties
 var weaponTable = "Weapons";
-var weaponFields = ["Id", "BaseId", "FormId", "WeaponName", "Type", "Rarity", "ElementalType", "MinHp", "MaxHp", "MinAtk", "MaxAtk", "VariationId", "DecBaseId", "DecVariationId", "BulletBaseId", "BulletVariationId", "Skill", "SkillName", "SkillDesc", "IsPlayable", "FlavorText", "SellCoin", "SellDewPoint", "CraftNodeId", "ParentCraftNodeId", "CraftGroupId", "FortCraftLevel", "AssembleCoin", "DisassembleCoin", "DisassembleCost", "MainWeaponId", "MainWeaponQuantity", "CraftMaterialType1", "CraftMaterial1", "CraftMaterialQuantity1", "CraftMaterialType2", "CraftMaterial2", "CraftMaterialQuantity2", "CraftMaterialType3", "CraftMaterial3", "CraftMaterialQuantity3", "CraftMaterialType4", "CraftMaterial4", "CraftMaterialQuantity4", "CraftMaterialType5", "CraftMaterial5", "CraftMaterialQuantity5"];
+var weaponFields = ["Id", "BaseId", "FormId", "WeaponName=Name", "Type", "Rarity", "ElementalType", "MinHp", "MaxHp", "MinAtk", "MaxAtk", "VariationId", "DecBaseId", "DecVariationId", "BulletBaseId", "BulletVariationId", "Skill", "SkillName", "SkillDesc", "IsPlayable", "FlavorText", "SellCoin", "SellDewPoint", "CraftNodeId", "ParentCraftNodeId", "CraftGroupId", "FortCraftLevel", "AssembleCoin", "DisassembleCoin", "DisassembleCost", "MainWeaponId", "MainWeaponQuantity", "CraftMaterialType1", "CraftMaterial1", "CraftMaterialQuantity1", "CraftMaterialType2", "CraftMaterial2", "CraftMaterialQuantity2", "CraftMaterialType3", "CraftMaterial3", "CraftMaterialQuantity3", "CraftMaterialType4", "CraftMaterial4", "CraftMaterialQuantity4", "CraftMaterialType5", "CraftMaterial5", "CraftMaterialQuantity5"];
+var weaponGrouping = ["Id"];
 
 // wyrmprints table properties
 var wyrmprintTable = "Wyrmprints";
-var wyrmprintFields = ["BaseId=Id", "Name", "Rarity", "AmuletType", "MinHp", "MaxHp", "MinAtk", "MaxAtk", "VariationId", "Abilities11", "Abilities12", "Abilities21", "Abilities22", "Abilities31", "Abilities32", "ArtistCV", "FlavorText1", "FlavorText2", "FlavorText3", "FlavorText4", "FlavorText5", "IsPlayable", "SellCoin", "SellDewPoint", "ReleaseDate", "FeaturedCharacters"];
+var wyrmprintFields = ["BaseId", "Name", "Rarity", "AmuletType", "MinHp", "MaxHp", "MinAtk", "MaxAtk", "VariationId", "Abilities11", "Abilities12", "Abilities21", "Abilities22", "Abilities31", "Abilities32", "ArtistCV", "FlavorText1", "FlavorText2", "FlavorText3", "FlavorText4", "FlavorText5", "IsPlayable", "SellCoin", "SellDewPoint", "ReleaseDate", "FeaturedCharacters"];
+var wyrmprintGrouping = ["BaseId"];
 
 // dragon table properties
 var dragonTable = "Dragons";
 var dragonFields = ["BaseId", "Id", "Name", "NameJP", "Title", "Obtain", "Rarity", "ElementalType", "VariationId", "IsPlayable", "MinHp", "MaxHp", "MinAtk", "MaxAtk", "Skill1", "SkillName", "SkillDescription", "Abilities11", "Abilities12", "Abilities21", "Abilities22", "ProfileText", "FavoriteType", "JapaneseCV", "EnglishCV", "SellCoin", "SellDewPoint", "MoveSpeed", "DashSpeedRatio", "TurnSpeed", "IsTurnToDamageDir", "MoveType", "IsLongRange", "ReleaseDate"];
+var dragonGrouping = ["BaseId", "VariationId"];
 
 // parsed JSON data
 var adventurerData = { value: [] };
@@ -23,13 +27,25 @@ var weaponData = { value: [] };
 var wyrmprintData = { value: [] };
 var dragonData = { value: [] };
 
-function constructAPIRequest(table, fields) {
+function constructAPIRequest(table, fields, grouping) {
     var resultURL = baseURL + "&tables=" + table;
 
     resultURL += "&fields=";
     for (var i = 0; i < fields.length; ++i) {
-        resultURL += fields[i] + ",+";
+        resultURL += fields[i];
+        if (i + 1 < fields.length) {
+            resultURL += ",+";
+        }
     }
+
+    resultURL += "&group_by=";
+    for (var i = 0; i < grouping.length; ++i) {
+        resultURL += grouping[i];
+        if (i + 1 < grouping.length) {
+            resultURL += ",+";
+        }
+    }
+
     return resultURL;
 }
 
@@ -38,18 +54,18 @@ function extractDataFromAPIRequest(json) {
     var resultArray = [];
     for (var i = 0; i < cargoTable.length; ++i) {
         var entry = cargoTable[i].title;
-        var isDuplicate = false;
-        for (var j = 0; j < resultArray.length; ++j) {
-            if (entry.Id != null &&
-                resultArray[j].Id != null &&
-                entry.Id === resultArray[j].Id) {
-                console.log(entry.Id + " === " + resultArray[j].Id);
-                isDuplicate = true;
-            }
-        }
-        if (!isDuplicate) {
-            resultArray.push(entry);
-        }
+        // var isDuplicate = false;
+        // for (var j = 0; j < resultArray.length; ++j) {
+        //     if (entry.Id != null &&
+        //         resultArray[j].Id != null &&
+        //         entry.Id === resultArray[j].Id) {
+        //         console.log(entry.Id + " === " + resultArray[j].Id);
+        //         isDuplicate = true;
+        //     }
+        // }
+        // if (!isDuplicate) {
+        resultArray.push(entry);
+        // }
     }
     return resultArray;
 }
@@ -59,22 +75,22 @@ function clearDisplay() {
 }
 
 function getAdventurerData() {
-    getData(adventurerTable, adventurerFields, adventurerData);
+    getData(adventurerTable, adventurerFields, adventurerGrouping, adventurerData);
 }
 
 function getWeaponData() {
-    getData(weaponTable, weaponFields, weaponData);
+    getData(weaponTable, weaponFields, weaponGrouping, weaponData);
 }
 
 function getWyrmprintData() {
-    getData(wyrmprintTable, wyrmprintFields, wyrmprintData);
+    getData(wyrmprintTable, wyrmprintFields, wyrmprintGrouping, wyrmprintData);
 }
 
 function getDragonData() {
-    getData(dragonTable, dragonFields, dragonData);
+    getData(dragonTable, dragonFields, dragonGrouping, dragonData);
 }
 
-function getData(tableName, fields, data) {
+function getData(tableName, fields, grouping, data) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -83,7 +99,7 @@ function getData(tableName, fields, data) {
             document.getElementById("displayarea").innerHTML = data.value;
         }
     }
-    xhttp.open("GET", constructAPIRequest(tableName, fields), true);
+    xhttp.open("GET", constructAPIRequest(tableName, fields, grouping), true);
     xhttp.send();
 }
 
