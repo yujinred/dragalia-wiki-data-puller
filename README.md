@@ -1,1 +1,1 @@
-"# Dragalia Lost Gamepedia Wiki Data Puller" 
+# Dragalia Lost Gamepedia Wiki Data Puller
