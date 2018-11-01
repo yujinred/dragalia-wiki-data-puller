@@ -1,6 +1,10 @@
 
 var baseURL = "https://dragalialost.gamepedia.com/api.php?action=cargoquery&format=json&limit=max";
 
+// adventurers table properties
+var adventurerTable = "Adventurers";
+var adventurerFields = ["Id=BaseId", "Name", "NameJP", "Title", "WeaponType", "Rarity", "ElementalType", "CharaType", "VariationId", "MinHp3", "MinHp4", "MinHp5", "MaxHp", "PlusHp0", "PlusHp1", "PlusHp2", "PlusHp3", "PlusHp4", "McFullBonusHp5", "MinAtk3", "MinAtk4", "MinAtk5", "MaxAtk", "PlusAtk0", "PlusAtk1", "PlusAtk2", "PlusAtk3", "PlusAtk4", "McFullBonusAtk5", "MinDef", "DefCoef", "Skill1Name", "Skill2Name", "Abilities11", "Abilities12", "Abilities13", "Abilities14", "Abilities21", "Abilities22", "Abilities23", "Abilities24", "Abilities31", "Abilities32", "Abilities33", "Abilities34", "ExAbilityData1", "ExAbilityData2", "ExAbilityData3", "ExAbilityData4", "ExAbilityData5", "ManaCircleName", "JapaneseCV", "EnglishCV", "Description", "IsPlayable", "MaxFriendshipPoint", "Obtain", "ReleaseDate"];
+
 // weapons table properties
 var weaponTable = "Weapons";
 var weaponFields = ["Id", "BaseId", "FormId", "WeaponName", "Type", "Rarity", "ElementalType", "MinHp", "MaxHp", "MinAtk", "MaxAtk", "VariationId", "DecBaseId", "DecVariationId", "BulletBaseId", "BulletVariationId", "Skill", "SkillName", "SkillDesc", "IsPlayable", "FlavorText", "SellCoin", "SellDewPoint", "CraftNodeId", "ParentCraftNodeId", "CraftGroupId", "FortCraftLevel", "AssembleCoin", "DisassembleCoin", "DisassembleCost", "MainWeaponId", "MainWeaponQuantity", "CraftMaterialType1", "CraftMaterial1", "CraftMaterialQuantity1", "CraftMaterialType2", "CraftMaterial2", "CraftMaterialQuantity2", "CraftMaterialType3", "CraftMaterial3", "CraftMaterialQuantity3", "CraftMaterialType4", "CraftMaterial4", "CraftMaterialQuantity4", "CraftMaterialType5", "CraftMaterial5", "CraftMaterialQuantity5"];
@@ -14,6 +18,7 @@ var dragonTable = "Dragons";
 var dragonFields = ["BaseId", "Id", "Name", "NameJP", "Title", "Obtain", "Rarity", "ElementalType", "VariationId", "IsPlayable", "MinHp", "MaxHp", "MinAtk", "MaxAtk", "Skill1", "SkillName", "SkillDescription", "Abilities11", "Abilities12", "Abilities21", "Abilities22", "ProfileText", "FavoriteType", "JapaneseCV", "EnglishCV", "SellCoin", "SellDewPoint", "MoveSpeed", "DashSpeedRatio", "TurnSpeed", "IsTurnToDamageDir", "MoveType", "IsLongRange", "ReleaseDate"];
 
 // parsed JSON data
+var adventurerData = { value: [] };
 var weaponData = { value: [] };
 var wyrmprintData = { value: [] };
 var dragonData = { value: [] };
@@ -28,10 +33,6 @@ function constructAPIRequest(table, fields) {
     return resultURL;
 }
 
-function removeDuplicates(json, key) {
-
-}
-
 function extractDataFromAPIRequest(json) {
     var cargoTable = json.cargoquery;
     var resultArray = [];
@@ -39,7 +40,10 @@ function extractDataFromAPIRequest(json) {
         var entry = cargoTable[i].title;
         var isDuplicate = false;
         for (var j = 0; j < resultArray.length; ++j) {
-            if (entry.Id === resultArray[j].Id) {
+            if (entry.Id != null &&
+                resultArray[j].Id != null &&
+                entry.Id === resultArray[j].Id) {
+                console.log(entry.Id + " === " + resultArray[j].Id);
                 isDuplicate = true;
             }
         }
@@ -52,6 +56,10 @@ function extractDataFromAPIRequest(json) {
 
 function clearDisplay() {
     document.getElementById("displayarea").innerHTML = "";
+}
+
+function getAdventurerData() {
+    getData(adventurerTable, adventurerFields, adventurerData);
 }
 
 function getWeaponData() {
@@ -77,6 +85,11 @@ function getData(tableName, fields, data) {
     }
     xhttp.open("GET", constructAPIRequest(tableName, fields), true);
     xhttp.send();
+}
+
+function downloadAdventurerData() {
+    var fileName = "adventurerData.js";
+    downloadData(fileName, "var adventurers = " + adventurerData.value);
 }
 
 function downloadWeaponData() {
