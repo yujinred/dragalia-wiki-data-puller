@@ -21,11 +21,18 @@ var dragonTable = "Dragons";
 var dragonFields = ["BaseId", "Id", "Name", "NameJP", "Title", "Obtain", "Rarity", "ElementalType", "VariationId", "IsPlayable", "MinHp", "MaxHp", "MinAtk", "MaxAtk", "Skill1", "SkillName", "SkillDescription", "Abilities11", "Abilities12", "Abilities21", "Abilities22", "ProfileText", "FavoriteType", "JapaneseCV", "EnglishCV", "SellCoin", "SellDewPoint", "MoveSpeed", "DashSpeedRatio", "TurnSpeed", "IsTurnToDamageDir", "MoveType", "IsLongRange", "ReleaseDate"];
 var dragonGrouping = ["BaseId", "VariationId"];
 
+// abilities table properties
+var abilityTable = "Abilities";
+var abilityFields = ["Id", "GenericName", "Name", "Details", "AbilityIconName", "AbilityGroup", "PartyPowerWeight"];
+var abilityGrouping = ["Id"];
+
+
 // parsed JSON data
 var adventurerData = { value: [] };
 var weaponData = { value: [] };
 var wyrmprintData = { value: [] };
 var dragonData = { value: [] };
+var abilityData = { value: [] };
 
 function constructAPIRequest(table, fields, grouping) {
     var resultURL = baseURL + "&tables=" + table;
@@ -54,18 +61,7 @@ function extractDataFromAPIRequest(json) {
     var resultArray = [];
     for (var i = 0; i < cargoTable.length; ++i) {
         var entry = cargoTable[i].title;
-        // var isDuplicate = false;
-        // for (var j = 0; j < resultArray.length; ++j) {
-        //     if (entry.Id != null &&
-        //         resultArray[j].Id != null &&
-        //         entry.Id === resultArray[j].Id) {
-        //         console.log(entry.Id + " === " + resultArray[j].Id);
-        //         isDuplicate = true;
-        //     }
-        // }
-        // if (!isDuplicate) {
         resultArray.push(entry);
-        // }
     }
     return resultArray;
 }
@@ -88,6 +84,10 @@ function getWyrmprintData() {
 
 function getDragonData() {
     getData(dragonTable, dragonFields, dragonGrouping, dragonData);
+}
+
+function getAbilityData() {
+    getData(abilityTable, abilityFields, abilityGrouping, abilityData);
 }
 
 function getData(tableName, fields, grouping, data) {
@@ -121,6 +121,11 @@ function downloadWyrmprintData() {
 function downloadDragonData() {
     var fileName = "dragonData.js";
     downloadData(fileName, "var dragons = " + dragonData.value);
+}
+
+function downloadAbilityData() {
+    var fileName = "abilityData.js";
+    downloadData(fileName, "var abilities = " + abilityData.value);
 }
 
 function downloadData(filename, content) {
